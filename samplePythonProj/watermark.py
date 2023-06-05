@@ -1,5 +1,4 @@
-import cv2
-from PIL import Image
+import cv2 from PIL import Image
 import numpy as np
 def rm_watermark(source_img, destination_img):
     image = cv2.imread(source_img, -1)

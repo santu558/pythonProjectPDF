@@ -16,5 +16,5 @@ def tiff_to_pdf(tiff_path: str) -> str:
     return pdf_path
 
 if __name__ == '__main__':
-    tiff_to_pdf('at3.tif')
+    tiff_to_pdf('file_example_TIFF_1MB.tiff')
     print('converted image from tif to pdf')

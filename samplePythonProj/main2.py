@@ -7,12 +7,17 @@ import numpy as np
 import pytesseract
 from pytesseract import Output
 import pypdf
+import os
 
+inputPath = "input/"
+dir_list = os.listdir(inputPath)
+inputFile = inputPath + dir_list[0]
 
 def checkOrientationPDF():
     outputDict = {}
     pdfList = []
-    pages = convert_from_path('samplePdf10_removed.pdf')
+
+    pages = convert_from_path(inputFile)
 
     for pagenum in range(len(pages)):
         img = np.array(pages[pagenum])
@@ -32,7 +37,7 @@ def checkOrientationPDF():
 #     print(orientation)
 
 def rotatePDF(orients):
-    pdf_in = open('samplePdf10_removed.pdf', 'rb')
+    pdf_in = open(inputFile, 'rb')
     pdf_reader = pypdf.PdfReader(pdf_in)
     pdf_writer = pypdf.PdfWriter()
     print(orients)
@@ -43,7 +48,7 @@ def rotatePDF(orients):
             print("rotated")
         page = pdf_reader.pages[pagenum]
         pdf_writer.add_page(page)
-    pdf_out = open('LandscapeTestFileOut.pdf', 'wb')
+    pdf_out = open('output/outFile.pdf', 'wb')
     pdf_writer.write(pdf_out)
     pdf_out.close()
     pdf_in.close()
