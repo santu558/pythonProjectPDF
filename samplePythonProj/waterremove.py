@@ -23,7 +23,7 @@ def remove_watermark_from_pdf(pdf_path, output_path):
             # Remove the watermark from the page
             # In this example, we're simply copying the page without modification
 
-
+            print(page)
             writer.add_page(page)
 
         # Write the new PDF to the output path

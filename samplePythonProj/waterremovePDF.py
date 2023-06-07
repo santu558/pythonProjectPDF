@@ -24,12 +24,8 @@ def remove_watermark_from_pdf(pdf_path, output_path):
 
         # Store Pdf with convert_from_path function
         images = convert_from_path(pdf_path)
-
         #output images
         outPutImagesPDF = []
-        # opening or creating pdf file
-        file = open(output_path, "wb")
-
         # Iterate over each page in the PDF
         for i in range(len(images)):
             print(images[i])
@@ -38,10 +34,14 @@ def remove_watermark_from_pdf(pdf_path, output_path):
             img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
             _, new_img = cv2.threshold(img, 150, 255, cv2.THRESH_BINARY)
             pil_image = Image.fromarray(new_img)
-            im_1 = pil_image.convert('P')
+            im_1 = pil_image.convert('RGB')
+
+            #writer.add_page(im_1)
             print(im_1)
             outPutImagesPDF.append(im_1)
-        outPutImagesPDF[0].save(output_path)
+
+        # Write the new PDF to the output path
+        outPutImagesPDF[0].save(output_path,  save_all=True, append_images=outPutImagesPDF[1:])
 
         print("Watermark removed from PDF:", output_path)
 
