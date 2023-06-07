@@ -7,7 +7,6 @@ import numpy as np
 from PyPDF2 import PdfReader, PdfWriter
 from PIL import Image, ImageDraw, ImageChops
 import os
-from fpdf import FPDF
 
 from pdf2image import convert_from_path
 
@@ -28,8 +27,6 @@ def remove_watermark_from_pdf(pdf_path, output_path):
 
         #output images
         outPutImagesPDF = []
-        pdf = FPDF(format='A4')
-        pdf.set_auto_page_break(0)
         # opening or creating pdf file
         file = open(output_path, "wb")
 
